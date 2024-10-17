@@ -3,9 +3,7 @@
   "version": "0.0.0-development",
   "description": "A package to initialize a basic Express.js project with turbo speed",
   "main": "dist/index.js",
-  "bin": {
-    "turbo": "./bin/turbo.js"
-  },
+  "bin": "./bin/turbo.js",
   "scripts": {
     "build": "mkdir -p dist && cp -r src/* dist/", 
     "test": "echo \"Error: no test specified\" && exit 1"
