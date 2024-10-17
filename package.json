@@ -1,6 +1,6 @@
 {
-  "name": "turboxpress",
-  "version": "1.0.0",
+  "name": "@turboxpress/turboxpress",
+  "version": "0.0.0-development",
   "description": "A package to initialize a basic Express.js project with turbo speed",
   "main": "dist/index.js",
   "bin": {
@@ -21,6 +21,11 @@
   },
   "files": [
     "dist",
-    "bin"
-  ]
+    "bin",
+    "LICENSE",
+    "README.md"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
 }

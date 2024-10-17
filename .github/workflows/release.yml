@@ -1,37 +1,30 @@
-name: turboXpress
+name: Release
 
 on:
   push:
     branches:
       - main
+      - beta
+
+permissions:
+  contents: read
+  packages: write
+  pull-requests: write  
 
 jobs:
-  build-and-publish:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v3
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '18'
-
-      - name: Install Dependencies
-        run: npm ci
-
-      - name: Build Package
-        run: npm run build
-
-      - name: Publish to npm
-        uses: actions/upload-artifact@v3
-        with:
-          name: npm-package
-          path: dist/
-
-      - name: Create npm Release
-        run: |
-          npm publish --access public
-          echo "## npm Package Published" >> $GITHUB_STEP_SUMMARY
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+    release:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - uses: actions/setup-node@v4
+              with:
+                node-version: '14'
+            - run: npm install
+            - run: npm run build
+            - run: npm audit signatures
+            - name: Release
+              env:
+                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+              run: npx semantic-release
+            
