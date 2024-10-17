@@ -6,11 +6,6 @@ on:
       - main
       - beta
 
-permissions:
-  contents: read
-  packages: write
-  pull-requests: write  
-
 jobs:
     release:
         runs-on: ubuntu-latest
