@@ -1,18 +1,26 @@
 {
   "name": "turboxpress",
   "version": "1.0.0",
-  "description": "",
-  "main": "src/index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "description": "A package to initialize a basic Express.js project with turbo speed",
+  "main": "dist/index.js",
   "bin": {
     "turbo": "./bin/turbo.js"
   },
-  "keywords": [],
+  "scripts": {
+    "build": "mkdir -p dist && cp -r src/* dist/", 
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "author": "Opeoluwa Adeyeri",
   "license": "MIT",
   "dependencies": {
-    "fs-extra": "^11.2.0"
-  }
+    "fs-extra": "^11.1.0"
+  },
+  "devDependencies": {},
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "files": [
+    "dist",
+    "bin"
+  ]
 }
