@@ -60,6 +60,9 @@ app.listen(PORT, () => {
         await initNpm();
         await installExpress();
 
+        // Modify package.json to add custom start scripts
+        await updatePackageJson();
+
         console.log(colors.green('Project setup complete!'));
     } catch (error) {
         console.error(colors.red('Error setting up project:', error.message));
@@ -81,7 +84,7 @@ function initNpm() {
 
 function installExpress() {
     return new Promise((resolve, reject) => {
-        exec('npm install express', (error, stdout, stderr) => {
+        exec('npm install express nodemon', (error, stdout, stderr) => {
             if (error) {
                 console.error(colors.red(`Error installing Express: ${stderr}`));
                 reject(error);
@@ -90,6 +93,27 @@ function installExpress() {
             resolve();
         });
     });
+}
+
+// Function to update package.json with custom scripts
+async function updatePackageJson() {
+    try {
+        const packageJsonPath = path.join(process.cwd(), 'package.json');
+        const packageJson = await fs.readJson(packageJsonPath);
+
+        // Add custom start scripts
+        packageJson.scripts = {
+            ...packageJson.scripts, // Merge existing scripts if any
+            "start": "node index.js",
+            "start:dev": "nodemon index.js"
+        };
+
+        // Write the modified package.json back
+        await fs.writeJson(packageJsonPath, packageJson, { spaces: 2 });
+        console.log(colors.green('Custom scripts added to package.json!'));
+    } catch (error) {
+        console.error(colors.red('Error updating package.json:', error.message));
+    }
 }
 
 const [,, command, projectName, currentFolderFlag] = process.argv;
