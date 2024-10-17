@@ -5,15 +5,15 @@
   "main": "dist/index.js",
   "bin": "./bin/turbo.js",
   "scripts": {
-    "build": "mkdir -p dist && cp -r src/* dist/", 
+    "build": "mkdir -p dist && cp -r src/* dist/",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Opeoluwa Adeyeri",
   "license": "MIT",
   "dependencies": {
-    "fs-extra": "^11.1.0"
+    "colors": "^1.4.0",
+    "fs-extra": "^11.2.0"
   },
-  "devDependencies": {},
   "engines": {
     "node": ">=18.0.0"
   },

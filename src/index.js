@@ -1,5 +1,5 @@
 function initial() {
-    return 'TURBO!!'
+    return 'TURBO!!!!'
 }
 
 const turbo = {
