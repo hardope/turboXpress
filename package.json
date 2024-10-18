@@ -29,5 +29,10 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/hardope/turboXpress.git"
-  }
+  },
+  "keywords": [
+    "express",
+    "turbo",
+    "nodejs"
+  ]
 }
