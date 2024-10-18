@@ -1,5 +1,5 @@
 {
-  "name": "turboxpress",
+  "name": "turbo-xpress",
   "version": "1.0.0",
   "description": "A package to initialize a basic Express.js project with turbo speed",
   "main": "dist/index.js",
