@@ -85,7 +85,7 @@ function initNpm() {
 // Function to install turboxpress using npm link and install nodemon
 function installturbo_xpress() {
     return new Promise((resolve, reject) => {
-        exec('npm install turbo-xpress nodemon', (error, _stdout, stderr) => {
+        exec('npm install express turbo-xpress nodemon', (error, _stdout, stderr) => {
             if (error) {
                 console.error(colors.red(`Error linking turbxpress or installing nodemon: ${stderr}`));
                 reject(error);
