@@ -29,14 +29,14 @@ async function initProject(projectName, currentDir, isCurrentFolder) {
         }
     }
 
-    // Create an index.js file
+    // Create an index.js file using turxpress
     const indexContent = `
-const express = require('express');
-const app = express();
+const turbo_xpress = require('turbo-xpress');
+const app = turbo_xpress();
 const PORT = process.env.PORT || 3000;
 
 app.get('/', (req, res) => {
-    res.send('Hello, TurboXpress!');
+    res.send('Hello, turbo-xpress!');
 });
 
 app.listen(PORT, () => {
@@ -54,11 +54,11 @@ app.listen(PORT, () => {
             process.chdir(projectPath); // Change the current working directory to the new project folder
         }
         
-        console.log(colors.yellow('Initializing npm and installing Express...'));
+        console.log(colors.yellow('Initializing npm and installing turboxpress...'));
 
-        // Initialize npm and install Express
+        // Initialize npm and install turbo-xpress
         await initNpm();
-        await installExpress();
+        await installturbo_xpress();
 
         // Modify package.json to add custom start scripts
         await updatePackageJson();
@@ -72,21 +72,22 @@ app.listen(PORT, () => {
 function initNpm() {
     return new Promise((resolve, reject) => {
         exec('npm init -y', (error, stdout, stderr) => {
-            if (error) {
-                console.error(colors.red(`Error initializing npm: ${stderr}`));
-                reject(error);
-                return;
-            }
-            resolve();
+        if (error) {
+            console.error(colors.red(`Error initializing npm: ${stderr}`));
+            reject(error);
+            return;
+        }
+        resolve();
         });
     });
 }
 
-function installExpress() {
+// Function to install turboxpress using npm link and install nodemon
+function installturbo_xpress() {
     return new Promise((resolve, reject) => {
-        exec('npm install express nodemon', (error, stdout, stderr) => {
+        exec('npm install turbo-xpress nodemon', (error, _stdout, stderr) => {
             if (error) {
-                console.error(colors.red(`Error installing Express: ${stderr}`));
+                console.error(colors.red(`Error linking turbxpress or installing nodemon: ${stderr}`));
                 reject(error);
                 return;
             }
@@ -126,5 +127,5 @@ if (command === 'init' && projectName) {
     // Pass the currentDir if using "."
     initProject(isCurrentFolder ? currentDir : projectName, currentDir, isCurrentFolder);
 } else {
-    console.log(colors.red('Invalid command. Use "turbo init <project-name>" or "turbo init <project-name> ."'));
+    console.log(colors.red('Invalid command. Use "turb-xpresss init <project-name>" or "turbo-xpress init <project-name> ."'));
 }
